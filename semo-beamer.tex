@@ -30,13 +30,21 @@
 \usepackage{fancyvrb}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{esvect}
 
 \newcommand{\imagesource}[1]{{\centering\hfill\break\hbox{\scriptsize Image Source:\thinspace{\tiny\itshape #1}}\par}}
-\newcommand{\image}[2]{%
+\newcommand{\image}[3][\@nil]{%
+        \def\tmp{#1}%
         \begin{center}
-        \includegraphics[max height = 0.55\textheight, max width = \textwidth]{images/#1}
+        \ifx\tmp\@nnil
+            \includegraphics[max height = 0.55\textheight, max width = \textwidth]{images/#2}
+        \else
+            \includegraphics[max height = 0.50\textheight, max width = \textwidth]{images/#2}
+            \linebreak
+            #1
+        \fi
         \linebreak
-        {\tiny Image Source:\thinspace{\tiny #2}}
+        {\tiny Image Source:\thinspace{\tiny #3}}
         \end{center}
 }
 
@@ -139,7 +147,7 @@ killall busybox
   \begin{block}{left}
   \end{block}
   \column{0.5\textwidth}
-  \image{turing}{Wikimedia Commons}
+  \image[Alan Turing]{turing}{Wikimedia Commons}
   \end{columns}
 \end{frame}
 
